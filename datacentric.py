@@ -102,9 +102,6 @@ def train_model(df, df_test, output_folder):
 chaine_mots = []
 
 
-for liste in df_train5.mots_corriges:
-    for word in liste:
-        chaine_mots.append(word)
         
 
 from collections import Counter
@@ -118,14 +115,6 @@ freq = [m[1] for m in dico.most_common(50)]
 
 plt.figure(figsize= (20,20))
 sns.barplot(y=mots, x=freq)
-
-#Enregistrement des dataframe des premières étapes 
-
-
-df_train2.to_csv('df_train2.csv')
-df_train3.to_csv('df_train3.csv')
-df_train4.to_csv('df_train4.csv')
-df_train5.to_csv('df_train5.csv')
 
 #Correction des mots avec fautes
 words = pd.read_csv('drive/MyDrive/Colab Notebooks/words_alpha.txt')
@@ -172,8 +161,6 @@ def stemming(mots):
 
 test_stemming = df_train['review'].iloc[0]
 print(test_stemming)
-test_stemming = correct(test_stemming)
-print(test_stemming)
 print(stemming(test_stemming))
 
 #Lemmatisation des différents mots
@@ -191,8 +178,6 @@ def lemming(mots):
 
 test_lemming = df_train['review'].iloc[0]
 print(test_lemming)
-test_lemming = correct(test_lemming)
-print(word_tokenize(test_lemming))
 print(lemming(test_lemming))
 
 #Tout en minuscule
@@ -201,8 +186,6 @@ def lowchar(mots):
 
 test_lowchar = df_train['review'].iloc[0]
 print(test_lowchar)
-print(lowchar(test_lowchar))
-test_lowchar = correct(test_lowchar)
 print(lowchar(test_lowchar))
 
 #suppression des stop words 
@@ -222,8 +205,6 @@ def remove_stopwords(mots):
 test_remove_stopwords = df_train['review'].iloc[0]
 print(test_remove_stopwords)
 print(remove_stopwords(test_remove_stopwords))
-test_remove_stopwords = correct(test_remove_stopwords)
-print(remove_stopwords(test_remove_stopwords))
 
 #Récupération des mots d'au moins 3 lettres
 real_words = re.compile('[a-zA-Z0-9]{3,}')
@@ -242,8 +223,6 @@ def remove_non_words(string):
 
 test_remove_non_words = df_train['review'].iloc[0]
 print(test_remove_non_words)
-print(remove_non_words(test_remove_non_words))
-test_remove_non_words = correct(test_remove_non_words)
 print(remove_non_words(test_remove_non_words))
 
 #Removing the html strips
